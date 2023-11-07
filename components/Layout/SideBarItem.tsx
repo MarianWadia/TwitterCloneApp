@@ -18,11 +18,13 @@ const SideBarItem: React.FC<SideBarItemProps> = ({
 }) => {
   return (
     <div className='flex flex-row items-center'>
+      {/* Mobile first styles */}
         <div className='relative rounded-full w-14 h-14 flex items-center justify-center p-4 hover:bg-slate-300 
           hover:bg-opacity-10 cursor-pointer lg:hidden'>
             <Icon size={20} color='white'/>
         </div>
-
+        
+      {/* large screens styles */}
         <div className='relative hidden lg:flex flex-row gap-4 rounded-full items-center p-4 hover:bg-slate-300 
           hover:bg-opacity-10 cursor-pointer'>
             <Icon size={20} color='white'/>

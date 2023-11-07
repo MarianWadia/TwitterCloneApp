@@ -38,6 +38,7 @@ const SideBar = () => {
                         icon={item.icon}
                     />
                 ))}
+                {/* another sidebar item component separate from those of iteration */}
                 <SideBarItem onClick={()=>{}} label='Logout' icon={BiLogOut}/>
                 <SideBarTweetButton />
             </div>

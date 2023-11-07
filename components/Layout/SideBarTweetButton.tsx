@@ -7,10 +7,10 @@ const SideBarTweetButton = () => {
   return (
     <div onClick={()=>router.push('/')}>
         {/* // **Mobile Style** */}
-        <div className='relative rounded-full w-14 h-10 flex items-center justify-center p-4 mr-1 bg-sky-500 
+        <div className='relative rounded-full w-14 h-14 flex items-center justify-center mt-6 bg-sky-500 
           hover:bg-opacity-80 cursor-pointer lg:hidden transition'
         >
-            <FaFeather size={20} color='white'/>
+            <FaFeather size={22} color='white'/>
         </div>
 
         {/* // **Desktop style** */}

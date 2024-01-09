@@ -1,4 +1,4 @@
-"use-client"
+
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
 import { BiArrowBack } from 'react-icons/bi';

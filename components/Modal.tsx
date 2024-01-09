@@ -1,4 +1,4 @@
-"use-client"
+
 import React, { useCallback } from 'react'
 import {AiOutlineClose} from "react-icons/ai"
 import Button from './Button';
@@ -89,7 +89,7 @@ const Modal: React.FC<ModelProps> = ({
 
                    {/* Footer */}
                    <div className='flex flex-col gap-2 p-5'>
-                        <Button disabled={true} label={actionLabel} fullWidth secondary large onClick={handleSubmit} />
+                        <Button disabled={false} label={actionLabel} fullWidth secondary large onClick={handleSubmit} />
                         {footer}
                    </div>
                 </div>

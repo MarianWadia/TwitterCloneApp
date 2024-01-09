@@ -1,9 +1,10 @@
-"use-client";
+
 import useLoginModal from '@/hooks/useLoginModal'
 import React, { useCallback, useState } from 'react'
 import Input from '../Input';
 import Modal from '../Modal';
 import useRegisterModal from '@/hooks/useRegisterModal';
+import { signIn } from 'next-auth/react';
 
 
 
@@ -26,6 +27,11 @@ const LoginModal = () => {
         try {
             setIsLoading(true);
             // TODO: adding the actual functionality of signing the user in
+            signIn('credentials', {
+                email,
+                password
+            })
+            console.log('signed in successfully')
             onClose();
         } catch (error) {
             console.error('error signing user in', error);
@@ -34,7 +40,7 @@ const LoginModal = () => {
             setIsLoading(false);
         }
         
-    }, [onClose])
+    }, [onClose, email, password])
 
     /* The Body of the Modal as we will return the Modal Component at the bottom which will take the 
     BodyContent Component as a value for the body */

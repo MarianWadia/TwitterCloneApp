@@ -28,11 +28,10 @@ const serverAuth = async (req: NextApiRequest, res: NextApiResponse) => {
             throw new Error("User not found");  // Customize the error message as needed
         }
 
-        return { currentUser };
+        return { ...currentUser };
     } catch (error) {
         console.error("Authentication error: user not signed in")
-        // throw error;  
-        // console.log('error')
+
     }
 };
 

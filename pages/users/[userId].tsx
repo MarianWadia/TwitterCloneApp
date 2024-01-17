@@ -1,0 +1,31 @@
+import Header from '@/components/Header'
+import UserBio from '@/components/users/UserBio'
+import UserHero from '@/components/users/UserHero'
+import useUser from '@/hooks/useUser'
+import { useParams } from 'next/navigation'
+import { useRouter } from 'next/router'
+import React from 'react'
+import { ClipLoader } from 'react-spinners'
+
+const UserView = () => {
+    const router = useRouter()
+    const { userId } = router.query
+    const {data: fetchedUser, isLoading} = useUser(userId as string)
+
+    if(!fetchedUser || isLoading) {
+        return (
+            <div className='flex items-center justify-center h-full'>
+                <ClipLoader color='light-blue' size={70} />
+            </div>
+        )
+    }
+  return (
+    <>
+        <Header showBackArrow label={fetchedUser?.name} />
+        <UserHero userId={userId as string} />
+        <UserBio userId={userId as string} />
+    </>
+  )
+}
+
+export default UserView

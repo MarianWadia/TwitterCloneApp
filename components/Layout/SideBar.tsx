@@ -33,6 +33,28 @@ const SideBar = () => {
     const {data: currentUser} = useCurrentUser();
     console.log(currentUser);
 
+    
+const items = [
+    {
+        label: "Home", 
+        href: "/",
+        icon: BsHouseFill
+    }, 
+    {
+        label: "Notifications", 
+        href: "/notifications",
+        icon: BsBellFill,
+        isProtected: true
+
+    },
+    {
+        label: "Profile", 
+        href: `/users/${currentUser?.id}`,
+        icon: FaUser,
+        isProtected: true
+    }
+]
+
   return (
     <div className='col-span-1 h-full md:pr-6'>
         <div className='flex flex-col items-end'>

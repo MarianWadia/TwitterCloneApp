@@ -15,8 +15,8 @@ const Avatar : React.FC<AvatarProps> = ({
     isLarge
 }) => {
     const router = useRouter()
-    console.log(userId)
     const {data: fetchedUser} = useUser(userId) 
+    // console.log(fetchedUser)
 
    const onClick = useCallback((event:any)=>{
         event.stopPropagation();

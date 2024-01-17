@@ -17,7 +17,15 @@ const items = [
     {
         label: "Notifications", 
         href: "/notifications",
-        icon: BsBellFill
+        icon: BsBellFill,
+        isProtected: true
+
+    },
+    {
+        label: "Profile", 
+        href: "/users/123",
+        icon: FaUser,
+        isProtected: true
     }
 ]
 
@@ -36,13 +44,14 @@ const SideBar = () => {
                         href={item.href}
                         label={item.label}
                         icon={item.icon}
+                        isProtected={item.isProtected}
                     />
                 ))}
                 {/* another sidebar item component separate from those of iteration */}
                 {currentUser && (
                     <>
                         <SideBarItem onClick={()=>{signOut()}} label='Logout' icon={BiLogOut}/>
-                        <SideBarItem label='Profile' icon={FaUser} href='/users/123' />
+                        {/* <SideBarItem label='Profile' icon={FaUser} href='/users/123' /> */}
                     </>
                 )}
                 <SideBarTweetButton />

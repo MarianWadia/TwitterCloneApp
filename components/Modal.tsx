@@ -43,7 +43,7 @@ const Modal: React.FC<ModelProps> = ({
     <>
         <div className='
             flex justify-center items-center outline-none bg-neutral-800
-            opacity-70 z-50 overflow-x-hidden overflow-y-auto inset-0 fixed focus:outline-none
+            opacity-90 z-50 overflow-x-hidden overflow-y-auto inset-0 fixed focus:outline-none
         '>
             <div className='relative md:top-6 xl:top-4 w-full xl:w-[575px] lg:w-3/6 my-2 mx-auto lg:max-w-3xl h-full lg:h-auto lg:max-h-[600px] flex justify-center items-center overflow-hidden'>
                 {/* Content */}

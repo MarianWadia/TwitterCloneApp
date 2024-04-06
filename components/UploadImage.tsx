@@ -16,6 +16,7 @@ const UploadImage : React.FC<UploadImageProps> = ({
   disabled
 }) => {
   const [base64, setBase64] = useState(value);
+  
   const handleChange = useCallback((base64: string)=>{
     onChange(base64)
   },[onChange])
@@ -29,6 +30,7 @@ const UploadImage : React.FC<UploadImageProps> = ({
     }
     reader.readAsDataURL(file)
   },[handleChange])
+
   const {getRootProps, getInputProps} = useDropzone({
     maxFiles: 1,
     disabled,
@@ -45,10 +47,11 @@ const UploadImage : React.FC<UploadImageProps> = ({
       })}
     >
       <input {...getInputProps()} />
-      {base64 ? 
-        (<div className='flex items-center justify-center'>
-          <Image src={base64} width={100} height={100} alt='profile Image' />
-        </div>) 
+      { base64 ? 
+        ( <div className='flex items-center justify-center'>
+            <Image src={base64} width="100" height="100" alt='profile Image' />
+          </div>
+        ) 
         : 
         (<p className='text-white cursor-pointer'>{label}</p>)}
     </div>

@@ -2,7 +2,7 @@ import useCurrentUser from '@/hooks/useCurrentUser'
 import useEditModal from '@/hooks/useEditModal'
 import useUser from '@/hooks/useUser'
 import axios from 'axios'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import Modal from '../Modal'
 import Input from '../Input'
@@ -39,6 +39,16 @@ const EditModal = () => {
       setIsLoading(false)
     }
   },[name, bio, coverImage, profileImage, username, mutateFetchedUser, editModal])
+  
+  useEffect(() => {
+    if (currentUser) {
+      setName(currentUser.name || '');
+      setUsername(currentUser.Username || '');
+      setBio(currentUser.bio || '');
+      setCoverImage(currentUser.coverImage || '');
+      setProfileImage(currentUser.profileImage || '');
+    }
+  }, [currentUser]);
 
   const modalBody = (
     <div className='flex flex-col gap-4'>

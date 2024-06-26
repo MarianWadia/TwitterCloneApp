@@ -38,7 +38,7 @@ const PostItem: React.FC<PostItemProps> = ({userId, data}) => {
     },[data.createdAt]) 
 
   return (
-    <div className='border-b-[1px] border-neutral-800 p-5 hover:bg-neutral-900'>
+    <div className='border-b-[1px] border-neutral-800 p-5 hover:bg-neutral-900 cursor-pointer' onClick={goToPost}>
         <div className='flex flex-row items-start gap-4'>
             <Avatar userId={data.user.id} />
             <div className='flex flex-col'>

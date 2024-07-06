@@ -1,5 +1,6 @@
 import Form from '@/components/Form'
 import Header from '@/components/Header'
+import CommentsFeed from '@/components/posts/CommentsFeed'
 import PostItem from '@/components/posts/PostItem'
 import usePost from '@/hooks/usePost'
 import { useRouter } from 'next/router'
@@ -9,6 +10,7 @@ import { ClipLoader } from 'react-spinners'
 export default function PostView() {
     const router = useRouter()
     const { postId } = router.query
+    console.log('postId from single post page', postId)
     const {data: fetchedPost, isLoading} = usePost(postId as string)
     console.log('fetchedPost', fetchedPost)
     if(isLoading){
@@ -21,8 +23,9 @@ export default function PostView() {
   return (
     <>
         <Header label='Tweet' showBackArrow />
-        <PostItem data={fetchedPost?.length && fetchedPost[0]} userId={fetchedPost?.length && fetchedPost[0]?.user?.id} />
+        <PostItem data={fetchedPost} />
         <Form placeholder='Tweet your reply' isComment postId={postId as string} />
+        <CommentsFeed comments={fetchedPost?.comments} />
     </>
   )
 }

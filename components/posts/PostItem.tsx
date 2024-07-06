@@ -15,7 +15,7 @@ interface PostItemProps {
 const PostItem: React.FC<PostItemProps> = ({userId, data}) => {
     const loginModal = useLoginModal()
     const {data: currentUser} = useCurrentUser()
-    console.log('userId', userId)
+    // console.log('userId', userId)
     const {isLiked, toggleLike} = useLike({postId: data?.id, userId})
     const router = useRouter()
     console.log('data', data)
@@ -34,7 +34,9 @@ const PostItem: React.FC<PostItemProps> = ({userId, data}) => {
     const onLike = useCallback((event: any)=>{
         event.stopPropagation();
         // loginModal.onOpen()
+        console.log('isLiked', isLiked)
         toggleLike()
+        console.log('isLiked', isLiked)
     },[toggleLike])
 
     const createdAt = useMemo(()=>{
@@ -53,7 +55,7 @@ const PostItem: React.FC<PostItemProps> = ({userId, data}) => {
                     <p
                         className='hover:underline text-white font-semibold cursor-pointer'
                     >{data?.user?.name}</p>
-                    <p className='text-neutral-500 text-sm cursor-pointer hover:underline hidden md:block'>@{data?.user?.Username}</p>
+                    <p onClick={goToUser} className='text-neutral-500 text-sm cursor-pointer hover:underline hidden md:block'>@{data?.user?.Username}</p>
                     <span className='text-neutral-500 text-sm'>{createdAt}</span>
                 </div>
                 <p className='text-white text-sm mt-1'>{data?.body}</p>

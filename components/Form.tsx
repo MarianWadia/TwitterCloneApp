@@ -7,6 +7,7 @@ import React, { useCallback, useState } from 'react'
 import toast from 'react-hot-toast';
 import Button from './Button';
 import Avatar from './Avatar';
+import usePost from '@/hooks/usePost';
 
 interface FormProps {
     placeholder: string;
@@ -23,15 +24,22 @@ const Form :React.FC<FormProps> = ({
     const loginModal = useLoginModal()
     const { data: currentUser } = useCurrentUser()
     const { mutate: mutatePosts } = usePosts()
+    const { mutate: mutatePost } = usePost(postId as string)
     const [body, setBody] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
     const onSubmit = useCallback(async()=>{
         try {
             setIsLoading(true)
-            const post = await axios.post('/api/posts', {body}) 
-            toast.success('Tweet Created')
+            if(isComment) {
+                const comment = await axios.post(`/api/comments?postId=${postId}`, { body })
+                toast.success('Comment created')
+            }else{
+                const post = await axios.post('/api/posts', { body }) 
+                toast.success('Tweet Created')
+            }
             setBody('')
+            mutatePost()
             mutatePosts()
         } catch (error) {
             toast.error("Something went wrong")
@@ -40,7 +48,7 @@ const Form :React.FC<FormProps> = ({
             setIsLoading(false)
             setBody('')
         }
-    },[body, mutatePosts]) 
+    },[isComment, mutatePosts, postId, body, mutatePost]) 
   return (
     <div className='border-b-[1px] border-neutral-800 w-full py-4 px-5'>
        {currentUser?(

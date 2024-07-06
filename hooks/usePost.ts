@@ -7,7 +7,7 @@ const usePost = (postId: string) => {
         mutate, 
         isLoading, 
         error 
-    } = useSWR(postId ? `/api/posts?postId=${postId}` : null , fetcher)
+    } = useSWR(postId ? `/api/posts/${postId}` : null , fetcher)
 
     return{
         data, 

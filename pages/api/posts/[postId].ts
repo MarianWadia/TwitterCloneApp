@@ -17,6 +17,7 @@ export default async function handler(req:NextApiRequest, res: NextApiResponse){
                 id: postId
             },
             include: {
+                user: true,
                 comments: {
                     include: {
                         user: true
@@ -27,6 +28,8 @@ export default async function handler(req:NextApiRequest, res: NextApiResponse){
                 }
             }
         })
+
+        console.log('post from server', post)
 
         return res.status(200).json(post)
 

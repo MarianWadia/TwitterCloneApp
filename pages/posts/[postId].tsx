@@ -21,7 +21,7 @@ export default function PostView() {
   return (
     <>
         <Header label='Tweet' showBackArrow />
-        <PostItem data={fetchedPost?.length && fetchedPost[0]} />
+        <PostItem data={fetchedPost?.length && fetchedPost[0]} userId={fetchedPost?.length && fetchedPost[0]?.user?.id} />
         <Form placeholder='Tweet your reply' isComment postId={postId as string} />
     </>
   )

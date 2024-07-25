@@ -65,7 +65,7 @@ const LoginModal = () => {
 
     const FooterContent = (
         <div className='text-neutral-400 mt-4 flex flex-row gap-1 justify-center'>
-            <p>First time using Twitter?</p>  
+            <p>First time using Twitter-Clone?</p>  
             <span className='text-white cursor-pointer hover:underline font-semibold' onClick={toggleModals}>Create an account</span>
         </div>
     )

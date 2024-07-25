@@ -72,7 +72,7 @@ const Form :React.FC<FormProps> = ({
             </div>
        ):
        (<div className='w-full flex items-center flex-col gap-4 justify-center'>
-            <h1 className='text-white font-bold text-2xl'>Welcome to Twitter</h1>
+            <h1 className='text-white font-bold text-2xl'>Welcome to Twitter-Clone</h1>
             <div className='flex flex-row items-center gap-4'>
                 <Button label='Login' onClick={loginModal.onOpen} />
                 <Button label='Register' secondary onClick={registerModal.onOpen} />

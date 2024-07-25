@@ -1,3 +1,4 @@
+import { create } from 'zustand';
 import serverAuth from "@/libs/serverAuth";
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/libs/prismadb";
@@ -20,9 +21,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if(!user){
             throw new Error('Invalid user ID');
         }
-        let updatedFollowingIds = [...(currentUser?.followingIds || [])]
+        let updatedFollowingIds = [...(user?.followingIds || [])]
         if(req.method === 'POST'){
             updatedFollowingIds.push(userId)
+            try {
+                await prisma.notification.create({
+                    data:{
+                        body: `${user.name}, ${currentUser?.name} has followed you`,
+                        userId: userId
+                    }
+                })
+                await prisma.user.update({
+                    where: {
+                        id: userId
+                    },
+                    data: {
+                        hasNotifications: true
+                    }
+                })
+            } catch (error) {
+                console.log(error)
+            }
         }else if(req.method === 'DELETE'){
             updatedFollowingIds = updatedFollowingIds.filter(followingId=> followingId !== userId)
         }

@@ -8,26 +8,27 @@ import SideBarTweetButton from './SideBarTweetButton'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import { signOut } from 'next-auth/react'
 
-const items = [
-    {
-        label: "Home", 
-        href: "/",
-        icon: BsHouseFill
-    }, 
-    {
-        label: "Notifications", 
-        href: "/notifications",
-        icon: BsBellFill,
-        isProtected: true
+// const items = [
+//     {
+//         label: "Home", 
+//         href: "/",
+//         icon: BsHouseFill
+//     }, 
+//     {
+//         label: "Notifications", 
+//         href: "/notifications",
+//         icon: BsBellFill,
+//         isProtected: true,
+//         alert: true
 
-    },
-    {
-        label: "Profile", 
-        href: "/users/123",
-        icon: FaUser,
-        isProtected: true
-    }
-]
+//     },
+//     {
+//         label: "Profile", 
+//         href: "/users/123",
+//         icon: FaUser,
+//         isProtected: true
+//     }
+// ]
 
 const SideBar = () => {
     const {data: currentUser} = useCurrentUser();
@@ -44,7 +45,8 @@ const items = [
         label: "Notifications", 
         href: "/notifications",
         icon: BsBellFill,
-        isProtected: true
+        isProtected: true,
+        alert: currentUser?.hasNotifications,
 
     },
     {
@@ -67,6 +69,7 @@ const items = [
                         label={item.label}
                         icon={item.icon}
                         isProtected={item.isProtected}
+                        alert={item.alert}
                     />
                 ))}
                 {/* another sidebar item component separate from those of iteration */}

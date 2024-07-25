@@ -22,6 +22,51 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     userId: currentUser?.id as string
                 }
             })
+            try {
+                const post = await prisma.post.findUnique({
+                    where: {
+                        id: postId,
+                    },
+                    include:{
+                        user: true
+                    }
+                })
+                if(post?.userId === currentUser?.id){
+                    await prisma.notification.create({
+                        data: {
+                            body: `${currentUser?.name}, you have commented to your post`,
+                            userId: currentUser?.id as string
+                        }
+                    })
+    
+                    await prisma.user.update({
+                        where:{
+                            id: currentUser?.id,
+                        },
+                        data: {
+                            hasNotifications: true
+                        }
+                    })
+                }else if(post?.userId){
+                    await prisma.notification.create({
+                        data: {
+                            body: `${post.user?.name}, ${currentUser?.name} has commented to your post`,
+                            userId: post.userId
+                        }
+                    })
+    
+                    await prisma.user.update({
+                        where:{
+                            id: post.userId,
+                        },
+                        data: {
+                            hasNotifications: true
+                        }
+                    })
+                }    
+            } catch (error) {
+                console.log(error);
+            } 
             return res.status(200).json(comment)
         }
         if(req.method === 'GET'){

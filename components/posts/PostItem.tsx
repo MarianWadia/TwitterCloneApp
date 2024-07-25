@@ -62,7 +62,7 @@ const PostItem: React.FC<PostItemProps> = ({userId, data}) => {
                 <div className='flex flex-row items-center gap-10 mt-2'>
                    <div 
                         className='flex flex-row items-center gap-1 text-neutral-500 cursor-pointer transition hover:text-sky-500'
-                        onClick={onLike}
+                        onClick={()=>router.push(`/posts/${data?.id}`)}
                     >
                         <AiOutlineMessage  size={20} />
                         <span>{data?.comments?.length || 0}</span>

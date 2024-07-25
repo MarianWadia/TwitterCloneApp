@@ -2,6 +2,7 @@
     "build": {
         "env": {
             "DATABASE_URL": "@your-database-url"
-        }
+        },
+        "command": "npm run build"
     }
 }
